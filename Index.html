@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMZ QR Pro</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script>
+if("serviceWorker" in navigator){
+navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">AMZ QR Pro</div>
+  <div>
+    <select onchange="changeLang(this.value)" class="lang-select">
+      <option value="en">EN</option>
+      <option value="ku">کوردی</option>
+    </select>
+    <button onclick="toggleMode()" class="mode-btn">🌙</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<div id="loginBox" class="card">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Enter username">
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="card">
+  <h2 id="genTitle">Generate QR Code</h2>
+  <input type="text" id="qrText" placeholder="Enter text or URL">
+  <button onclick="generateQR()">Generate</button>
+  <div id="qrResult"></div>
+  <button id="downloadBtn" onclick="downloadQR()" style="display:none;">Download</button>
+</div>
+
+<div class="card">
+  <h2 id="scanTitle">Scan QR Code</h2>
+  <button onclick="startScanner()">Scan with Camera</button>
+  <div id="reader"></div>
+  <input type="file" id="fileInput" accept="image/*">
+  <p id="scanResult"></p>
+</div>
+
+<div class="card">
+  <h2>QR History</h2>
+  <ul id="historyList"></ul>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
